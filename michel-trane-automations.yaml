@@ -1,0 +1,56 @@
+
+- id: '20260423_thermo_reveil'
+  alias: 'Thermopompe — réveil 25°C'
+  description: 'Set heat pump to heat/25°C at 05:45, only if outside is below 15°C'
+  trigger:
+    - platform: time
+      at: '05:45:00'
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.saguenay_temperature
+      below: 15
+  action:
+    - service: climate.set_temperature
+      target:
+        entity_id: climate.thermopompe_trane
+      data:
+        temperature: 25
+        hvac_mode: heat
+  mode: single
+
+- id: '20260423_thermo_nuit'
+  alias: 'Thermopompe — nuit 19°C'
+  description: 'Set heat pump to heat/19°C at 22:00, only if outside is below 15°C'
+  trigger:
+    - platform: time
+      at: '22:00:00'
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.saguenay_temperature
+      below: 15
+  action:
+    - service: climate.set_temperature
+      target:
+        entity_id: climate.thermopompe_trane
+      data:
+        temperature: 19
+        hvac_mode: heat
+  mode: single
+
+- id: '20260423_thermo_arret_chaud'
+  alias: 'Thermopompe — arrêt si extérieur > 15°C'
+  description: 'Turn heat pump off when outside temperature stays above 15°C for 30 minutes'
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.saguenay_temperature
+      above: 15
+      for:
+        minutes: 30
+  condition: []
+  action:
+    - service: climate.set_hvac_mode
+      target:
+        entity_id: climate.thermopompe_trane
+      data:
+        hvac_mode: 'off'
+  mode: single
