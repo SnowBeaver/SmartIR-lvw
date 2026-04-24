@@ -297,6 +297,11 @@ Contributing to your own code files is welcome. However, we do not accept incomp
 | [1240](../codes/climate/1240.json) | Unknown model            | Broadlink  |
 | [1241](../codes/climate/1241.json) | CBV12CBBNA<br>CBY12DBBNA | Broadlink  |
 
+#### Trane
+| Code                               | Supported Models | Controller |
+| ---------------------------------- | -----------------| ---------- |
+| [8801](../codes/climate/8801.json) | MAMHWUN18A1N0AA | Broadlink  |
+
 #### Toshiba
 | Code                               | Supported Models                                                                                                 | Controller |
 | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------- |
